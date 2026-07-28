@@ -44,7 +44,7 @@ def eveorodd(number):
     if number % 2 == 0:
         return 'EVEN'
     return 'ODD'
-def greetings(name = 'chupa'):
+def greetings(name = 'spaghetti'):
     message = name + ' ' + 'masarap'
     return message
 def return4(*args):
