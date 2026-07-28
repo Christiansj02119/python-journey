@@ -1,6 +1,6 @@
 try:
 
-    print('enter a number to determine if its higher or lower')
+    print('enter a number to determine wheter if num1 is higher or lower than num2')
     a_input = int(input('numA:'))
     b_input = int(input('numB:'))
 
