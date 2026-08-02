@@ -26,7 +26,8 @@ while temp:
     elif choice == '2':
         cursor.execute("SELECT * FROM todo_list")
         rows = cursor.fetchall()
-        print(rows)
+        for row in rows:
+            print('ID:', row[0], '| Task:', row[1], '| Done:', row[2], '| Created:', row[3], '| Dealine:', row[4])
     elif choice == '3':
         user_temp = int(input('Enter the ID you want to update: '))
         change = int(input('Input 1(done) 0(not done): '))
