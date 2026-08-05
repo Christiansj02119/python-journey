@@ -1,4 +1,5 @@
 import sqlite3
+from datetime import datetime
 conn = sqlite3.connect("notes_app.db")
 cursor = conn.cursor()
 with open("notes_app.sql", "r") as f:
@@ -20,8 +21,8 @@ while temp:
     if choice == 1:
         title = input("Enter the title:")
         body = input("Enter the body:")
-        created = input("Date created:")
-        update = input("Date updated:")
+        created = datetime.now()
+        update = None
         cursor.execute(contents)
         cursor.execute("INSERT INTO notes_app(title, body, created_at, updated_at) VALUES (?, ?, ?, ?)", (title, body, created, update))
         conn.commit()
@@ -30,11 +31,13 @@ while temp:
         user_temp = input('Type 1 to change the title, Type 2 for the body:')
         if user_temp == '1':
             temp_x = input("Enter the new title: ")
-            cursor.execute("UPDATE notes_app SET title = ? WHERE id = ?", (temp_x, user_id))
+            temp_p = datetime.now()
+            cursor.execute("UPDATE notes_app SET title = ?, updated_at = ? WHERE id = ?", (temp_x, temp_p, user_id))
             conn.commit()
         elif user_temp == '2':
             temp_y = input("Enter the new body: ")
-            cursor.execute("UPDATE notes_app SET body = ? WHERE id = ?", (temp_y, user_id))
+            temp_o = datetime.now()
+            cursor.execute("UPDATE notes_app SET body = ?, updated_at = ? WHERE id = ?", (temp_y, temp_o, user_id))
             conn.commit()
     elif choice == 3:
         user_delete = input("Enter the ID of the note you want to remove:")
@@ -50,5 +53,3 @@ while temp:
     elif choice == 5:
         print("tank you")
         temp = False
-
-
